@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Profile Name</th>
+                <th scope='col'>Email</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for profile in profiles %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'user:detailprofile' detailinput=profile.slug %}" class="nav-link fw-bold">{{profile.name}}</a></td>
+                    <td>{{profile.email}}</td>
+                    <td><a class='btn btn-danger' href="{% url 'user:delete' deleteinput=profile.id %}">Delete</a></td>
+                    <td><a class='btn btn-warning' href="{% url 'user:update' updateinput=profile.id %}">Update</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          <a class='btn btn-primary' href="{% url 'user:create' %}">Create</a>
+    </div>
+{% endblock contents %}

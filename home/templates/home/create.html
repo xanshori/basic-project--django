@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+
+{% block contents %}
+<div class="container mt-4">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{productforms.as_p}}
+        <input class='btn btn-primary' type="submit" value="send">
+    </form>
+</div>
+{% endblock contents %}

@@ -1,0 +1,18 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "Products",
+            "database": "Products",
+            "username": "root"
+        }
+    ],
+}

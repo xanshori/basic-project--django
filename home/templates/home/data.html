@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="container mt-4">
+    <table class="table">
+        <thead>
+          <tr>
+            <th class='text-center' scope="col">No</th>
+            <th class='text-center' scope="col">Product Code</th>
+            <th class='text-center' scope="col">Product Name</th>
+            <th class='text-center' scope="col">Color</th>
+            <th class='text-center' scope='col'>Quantity</th>
+            <th class='text-center' scope="col">Delete</th>
+            <th class='text-center' scope="col">Update</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <th class='text-center' scope="row">{{forloop.counter}}</th>
+                <td class='text-center'>{{product.product_code}}</td>
+                <td class='text-center'><a href="{% url 'home:detail' detailinput=product.slug %}" class="nav-link fw-bold">{{product.product_name}}</a></td>       
+                <td class='text-center'>{{product.color}}</td>
+                <td class='text-center'>{{product.quantity}}</td>
+                <td class='text-center'><a class='btn btn-danger' href="{% url 'home:delete' deleteinput=product.id%}">Delete</a></td>
+                <td class='text-center'><a class='btn btn-warning' href="{% url 'home:update' updateinput=product.id %}">Update</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+      <a class='btn btn-primary' href="{% url 'home:create' %}">Create</a>
+      <a class='btn btn-dark' href="{% url 'home:export_excel' %}">Cetak</a>
+</div>
+{% endblock contents %}

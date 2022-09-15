@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+
+{% block contents %}
+
+
+<div class="container bg-light pb-4 shadow mt-4">
+    {% for message in messages %}
+        <div class="alert alert-success">{{message}}</div>
+    {% endfor %}
+    <ul class='nav'>
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'home:index' %}">ALL-CATEGORIES</a>
+        </li>
+    {% for Category in categories %}
+        <li class='nav-item'>
+            <a class='nav-link' href="{% url 'home:category' categoryinput=Category.category %}">{{Category.category}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% for product in products %}
+<a class='nav-link' href="{% url 'home:detail' detailinput=product.slug %}"><h1 class='fw-bold'>{{product.product_name}}</h1></a>
+<p>{{product.description}}</p>
+<p class='fw-light'>{{product.create}}</p>
+{% endfor %}
+
+
+{% include "snippets/pagination.html" with queryset=products custom_range=custom_range %}
+</div>
+
+{% endblock contents %}
+
+
+

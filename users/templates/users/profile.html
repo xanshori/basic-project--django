@@ -1,0 +1,60 @@
+{% extends 'users/profile/baseProfile/baseprofile.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'users/css/profile/stylesprofiles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styl.css' %}">
+{% endblock styles %}
+
+
+{% block contents %}
+
+<div class='body'>
+    {% for profile in profiles %}
+    {% if profile.profile_image.url is not None and profile.profile_header.url is not None%}
+        <figure class="snip1336">
+            <img src="{{profile.profile_header.url}}"/>
+            <figcaption>
+            <img src="{{profile.profile_image.url}}" alt="profile-sample4" class="profile" />
+            <h2>{{profile.name}}<span>{{profile.career|lower|capfirst}}</span></h2>
+            <p>{{profile.bio|truncatechars:150}}</p>
+            <a href="#" class="follow">contact us</a>
+            <a href="{% url 'user:detailprofile' detailinput=profile.slug %}" class="info">More Info</a>
+            </figcaption>
+        </figure>
+    {% elif profile.profile_header.url is None or profile.profile_image.url is not None%}
+        <figure class="snip1336">
+            <img src="/users/static/users/img/upload/header.jpg"/>
+            <figcaption>
+            <img src="{{profile.profile_image.url}}" alt="profile-sample4" class="profile" />
+            <h2>{{profile.name}}<span>{{profile.career|lower|capfirst}}</span></h2>
+            <p>{{profile.bio|truncatechars:150}}</p>
+            <a href="#" class="follow">contact us</a>
+            <a href="{% url 'user:detailprofile' detailinput=profile.slug %}" class="info">More Info</a>
+        </figcaption>
+        </figure>
+    {% elif profile.profile_image.url is None or profile.profile_header.url is not None %}
+        <figure class="snip1336">
+            <img src="{{profile.profile_header.url}}"/>
+            <figcaption>
+            <img src="/users/static/users/img/upload/default_profile.png" class="profile"/>
+            <h2>{{profile.name}}<span>{{profile.career|lower|capfirst}}</span></h2>
+            <p>{{profile.bio|truncatechars:150}}</p>
+            <a href="#" class="follow">contact us</a>
+            <a href="{% url 'user:detailprofile' detailinput=profile.slug %}" class="info">More Info</a>
+            </figcaption>
+        </figure>
+    {% else %}
+        <figure class="snip1336">
+            <img src="/users/static/users/img/upload/header.jpg"/>
+            <figcaption>
+            <img src="/users/static/users/img/upload/default_profile.png" alt="profile-sample4" class="profile" />
+            <h2>{{profile.name}}<span>{{profile.career|lower|capfirst}}</span></h2>
+            <p>{{profile.bio|truncatechars:150}}</p>
+            <a href="#" class="follow">contact us</a>
+            <a href="{% url 'user:detailprofile' detailinput=profile.slug %}" class="info">More Info</a>
+            </figcaption>
+        </figure>
+    {% endif %}
+{% endfor %}
+</div>
+{% endblock contents %}

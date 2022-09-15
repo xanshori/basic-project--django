@@ -1,0 +1,13 @@
+/* Demo purposes only */
+html{
+    height: 100%;
+}
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: wrap;
+    margin: 0;
+    max-height: 100%;
+}

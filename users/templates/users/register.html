@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{title}}{% endblock title %}
+{% block contents %}
+<div class="container mt-4 pb-4 bg-light shadow ">
+<form method='POST'>
+    {% csrf_token %}
+  
+    <h3>Register Here</h3>
+    {% for message in messages %}
+        <div class="alert alert-info">{{message}}</div>
+    {% endfor %}
+      <p class='margin-bottom: 1rem'>
+        {{userregisterforms.as_p}} 
+      </p>
+    <br>
+    <button class='btn btn-primary' type="submit">Register</button>
+      <a class='btn btn-dark' href="{% url 'user:login' %}">Login</a>
+  
+</form>
+</div>
+{% endblock contents %}
+
+
+
